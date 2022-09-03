@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnProcessar;
     private TextView txtStatus;
-    private ProgressBar pgbProgresso;
+    private TextView txtContador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +21,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnProcessar = findViewById(R.id.btnProcessar);
         txtStatus = findViewById(R.id.txtStatus);
-        pgbProgresso = findViewById(R.id.pgbProgresso);
+        txtContador = findViewById(R.id.txtContador);
 
         btnProcessar.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        ProcessarTask task = new ProcessarTask(btnProcessar,txtStatus,pgbProgresso);
-        pgbProgresso.setMax(15);
+        ProcessarTask task = new ProcessarTask(btnProcessar,txtStatus,txtContador);
         task.execute(15);
     }
 }

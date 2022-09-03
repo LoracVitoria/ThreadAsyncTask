@@ -10,20 +10,20 @@ import android.widget.TextView;
 public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
     Button btnProcessar;
     TextView txtStatus;
-    ProgressBar pgbProgresso;
+    TextView txtContador;
 
-    public ProcessarTask(Button btnProcessar, TextView txtStatus, ProgressBar pgbProgresso) {
+    public ProcessarTask(Button btnProcessar, TextView txtStatus, TextView txtContador) {
         this.btnProcessar = btnProcessar;
         this.txtStatus = txtStatus;
-        this.pgbProgresso = pgbProgresso;
+        this.txtContador = txtContador;
     }
 
     @Override
     protected void onPreExecute() {
         btnProcessar.setEnabled(false);
         txtStatus.setVisibility(View.INVISIBLE);
-        pgbProgresso.setVisibility(View.VISIBLE);
-        pgbProgresso.setProgress(0);
+        txtContador.setVisibility(View.VISIBLE);
+        txtContador.setText("10");
     }
 
     @Override
@@ -31,19 +31,20 @@ public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
         btnProcessar.setEnabled(true);
         txtStatus.setText(R.string.finalizado);
         txtStatus.setVisibility(View.VISIBLE);
-        pgbProgresso.setVisibility(View.INVISIBLE);
+        txtContador.setVisibility(View.INVISIBLE);
     }
 
-    @Override
-    protected void onProgressUpdate(Integer... values) {
-        int p = values[0];
-        pgbProgresso.setProgress(p);
-    }
+//    @Override
+//    protected void onProgressUpdate(Integer... values) {
+//        int p = values[0];
+//        pgbProgresso.setProgress(p);
+//    }
 
     @Override
     protected Void doInBackground(Integer... integers) {
         int max = integers[0];
         for(int i=0; i<=max; i++){
+            txtContador.setText(max--);
             SystemClock.sleep(1000);
             publishProgress(i);
         }

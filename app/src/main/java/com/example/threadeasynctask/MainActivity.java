@@ -1,11 +1,10 @@
-package com.example.exasynctask;
+package com.example.threadeasynctask;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         ProcessarTask task = new ProcessarTask(btnProcessar,txtStatus,txtContador);
-        task.execute(15);
+        task.execute(10);
     }
 }

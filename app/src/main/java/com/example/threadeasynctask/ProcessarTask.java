@@ -1,10 +1,9 @@
-package com.example.exasynctask;
+package com.example.threadeasynctask;
 
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
@@ -23,7 +22,6 @@ public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
         btnProcessar.setEnabled(false);
         txtStatus.setVisibility(View.INVISIBLE);
         txtContador.setVisibility(View.VISIBLE);
-        txtContador.setText("10");
     }
 
     @Override
@@ -34,19 +32,19 @@ public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
         txtContador.setVisibility(View.INVISIBLE);
     }
 
-//    @Override
-//    protected void onProgressUpdate(Integer... values) {
-//        int p = values[0];
-//        pgbProgresso.setProgress(p);
-//    }
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        int p = values[0];
+        txtContador.setText(String.valueOf(p));
+    }
 
     @Override
     protected Void doInBackground(Integer... integers) {
         int max = integers[0];
         for(int i=0; i<=max; i++){
-            txtContador.setText(max--);
+//            txtContador.setText(String.valueOf(max--));
             SystemClock.sleep(1000);
-            publishProgress(i);
+            publishProgress(max--);
         }
         return null;
     }

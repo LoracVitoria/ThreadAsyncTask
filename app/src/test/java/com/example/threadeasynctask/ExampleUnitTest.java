@@ -1,4 +1,4 @@
-package com.example.exasynctask;
+package com.example.threadeasynctask;
 
 import org.junit.Test;
 
